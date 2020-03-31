@@ -32,7 +32,7 @@ namespace PG.Inspinia.TagHelpers
             if (!string.IsNullOrEmpty(MainActionName))
             {
                 htmlMainActionBlock = 
-                    $@"< li class='breadcrumb-item'>
+                    $@"<li class='breadcrumb-item'>
                             <a href='{MainActionUri}'>{MainActionName}</a>
                         </li>";
             }
