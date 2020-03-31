@@ -5,6 +5,8 @@ namespace pms.Helpers
     public class EBoxPanelContext
     {
         public IHtmlContent TitleOptions { get; set; }
+
+        public IHtmlContent DropDownOptions { get; set; }
         public IHtmlContent Content { get; set; }
 
         public IHtmlContent Footer { get; set; }

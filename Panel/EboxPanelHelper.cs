@@ -18,6 +18,22 @@ namespace PG.Inspinia.TagHelpers
         [HtmlAttributeName("SubTitle")]
         public string SubTitle { get; set; }
 
+        public bool ShowCloseButton { get; set; } = false;
+
+        public bool ShowCollapseButton { get; set; } = false;
+
+        
+        private string collapseTemplate = $@"<a class='collapse-link'>
+                                            <i class='fa fa-chevron-up'></i>
+                                            </a>";
+
+        private string closeTemplate = $@"<a class='close-link'>
+                                            <i class='fa fa-times'></i>
+                                         </a>";
+
+        private string dropdownTemplate = $@"<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                                            <i class='fa fa-wrench'></i>
+                                            </a>";
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
@@ -42,14 +58,23 @@ namespace PG.Inspinia.TagHelpers
             output.Content.AppendHtml("</h5>");
             output.Content.AppendHtml("<div class='ibox-tools'>");
 
+
+
             //output.Content.AppendHtml(template);
             if (modalContext.TitleOptions != null)
             {
               
+                if (ShowCollapseButton) output.Content.AppendHtml(collapseTemplate);
 
-                output.Content.AppendHtml(modalContext.TitleOptions); 
-                
+                output.Content.AppendHtml(dropdownTemplate);
+                output.Content.AppendHtml("<ul class='dropdown-menu dropdown-user'>");
+                output.Content.AppendHtml(modalContext.DropDownOptions);
+                output.Content.AppendHtml("</ul>");
+                if (ShowCloseButton) output.Content.AppendHtml(closeTemplate);
+
             }
+            
+       
             output.Content.AppendHtml("</div>");
             output.Content.AppendHtml("</div>");
 
@@ -78,6 +103,7 @@ namespace PG.Inspinia.TagHelpers
 
 
     [HtmlTargetElement("panel-title-options", ParentTag = "Inspinia-Panel")]
+    [RestrictChildren("Drop-Down")]
     public class TitleOptionsHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -94,6 +120,48 @@ namespace PG.Inspinia.TagHelpers
 
 
     }
+
+    [HtmlTargetElement("Drop-Down", ParentTag = "panel-title-options")]
+    //[RestrictChildren("Drop-Down-Items")]
+    public class DropDownOptionHelper : TagHelper
+    {
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+        {
+            var childContent = await output.GetChildContentAsync();
+            var modalContext = (EBoxPanelContext)context.Items[typeof(EboxPanelHelper)];
+            modalContext.DropDownOptions = childContent;
+
+
+            output.SuppressOutput();
+        }
+    }
+
+
+    [HtmlTargetElement("Drop-Down-Items", ParentTag = "Drop-Down")]
+    public class DropDownItemsHelper : TagHelper
+    {
+
+        public string href { get; set; } = "#";
+        
+        public string text { get; set; } = "Nuevo Item";
+
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+        {
+         
+            output.TagName = "li";
+            //output.TagMode = TagMode.StartTagAndEndTag;
+
+            var itemTemplate = $"<a href='{href}' class='dropdown-item'>{text}</a>";
+
+            output.PreContent.SetHtmlContent(itemTemplate);
+            
+            await base.ProcessAsync(context, output);
+
+        }
+        
+    }
+
+
 
 
     [HtmlTargetElement("panel-content", ParentTag = "Inspinia-Panel")]
