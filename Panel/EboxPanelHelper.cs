@@ -140,7 +140,7 @@ namespace PG.Inspinia.TagHelpers
     [HtmlTargetElement("Drop-Down-Items", ParentTag = "Drop-Down")]
     public class DropDownItemsHelper : TagHelper
     {
-
+        public string id { get; set; }
         public string href { get; set; } = "#";
         
         public string text { get; set; } = "Nuevo Item";
@@ -151,7 +151,7 @@ namespace PG.Inspinia.TagHelpers
             output.TagName = "li";
             //output.TagMode = TagMode.StartTagAndEndTag;
 
-            var itemTemplate = $"<a href='{href}' class='dropdown-item'>{text}</a>";
+            var itemTemplate = $"<a id={id} href='{href}' class='dropdown-item'>{text}</a>";
 
             output.PreContent.SetHtmlContent(itemTemplate);
             
