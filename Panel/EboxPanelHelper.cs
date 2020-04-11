@@ -151,7 +151,7 @@ namespace PG.Inspinia.TagHelpers
             output.TagName = "li";
             //output.TagMode = TagMode.StartTagAndEndTag;
 
-            var itemTemplate = $"<a id={id} href='{href}' class='dropdown-item'>{text}</a>";
+            var itemTemplate = $"<a id='{id}' href='{href}' class='dropdown-item'>{text}</a>";
 
             output.PreContent.SetHtmlContent(itemTemplate);
             
