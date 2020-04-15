@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PG.Inspinia.TagHelpers", "PG.Inspinia.TagHelpers.csproj", "{72AD004B-0F6A-4237-8E3D-5382734EC35F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PG.Inspinia.TagHelpers", "PG.Inspinia.TagHelpers.csproj", "{72AD004B-0F6A-4237-8E3D-5382734EC35F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

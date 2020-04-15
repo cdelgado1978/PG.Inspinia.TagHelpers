@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using pms.Helpers;
+
+
 
 namespace PG.Inspinia.TagHelpers
 {
@@ -23,15 +23,15 @@ namespace PG.Inspinia.TagHelpers
         public bool ShowCollapseButton { get; set; } = false;
 
         
-        private string collapseTemplate = $@"<a class='collapse-link'>
+        private readonly string collapseTemplate = $@"<a class='collapse-link'>
                                             <i class='fa fa-chevron-up'></i>
                                             </a>";
 
-        private string closeTemplate = $@"<a class='close-link'>
+        private readonly string closeTemplate = $@"<a class='close-link'>
                                             <i class='fa fa-times'></i>
                                          </a>";
 
-        private string dropdownTemplate = $@"<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+        private readonly string dropdownTemplate = $@"<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
                                             <i class='fa fa-wrench'></i>
                                             </a>";
 
@@ -122,7 +122,6 @@ namespace PG.Inspinia.TagHelpers
     }
 
     [HtmlTargetElement("Drop-Down", ParentTag = "panel-title-options")]
-    //[RestrictChildren("Drop-Down-Items")]
     public class DropDownOptionHelper : TagHelper
     {
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -149,7 +148,6 @@ namespace PG.Inspinia.TagHelpers
         {
          
             output.TagName = "li";
-            //output.TagMode = TagMode.StartTagAndEndTag;
 
             var itemTemplate = $"<a id='{id}' href='{href}' class='dropdown-item'>{text}</a>";
 

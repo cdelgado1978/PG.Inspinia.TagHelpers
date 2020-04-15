@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 
-namespace pms.Helpers
+namespace PG.Inspinia.TagHelpers
 {
     public class EBoxPanelContext
     {

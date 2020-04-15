@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 
-namespace pms.Helpers.Modal
+namespace PG.Inspinia.TagHelpers.Modal
 {
     public class ModalContext
     {
