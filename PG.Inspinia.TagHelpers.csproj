@@ -1,20 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-     <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RepositoryUrl>https://github.com/cdelgado1978/PG.Inspinia.TagHelpers</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>TagHelpers for Inspinia v2.93 and AspNetCore. (Inspinia Template not included)</Description>
+    <Description>TagHelpers for Inspinia v2.93 and AspNetCore 3.0. (Inspinia Template not included)</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>cdelgado1978</Authors>
     <Company>Palmea Group</Company>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-  
-     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.1.0" />
   </ItemGroup>
 
   
 
 </Project>
+

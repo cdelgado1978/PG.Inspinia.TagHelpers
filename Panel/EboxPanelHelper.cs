@@ -58,23 +58,23 @@ namespace PG.Inspinia.TagHelpers
             output.Content.AppendHtml("</h5>");
             output.Content.AppendHtml("<div class='ibox-tools'>");
 
-
+            if (ShowCollapseButton) output.Content.AppendHtml(collapseTemplate);
 
             //output.Content.AppendHtml(template);
             if (modalContext.TitleOptions != null)
             {
               
-                if (ShowCollapseButton) output.Content.AppendHtml(collapseTemplate);
+               
 
                 output.Content.AppendHtml(dropdownTemplate);
                 output.Content.AppendHtml("<ul class='dropdown-menu dropdown-user'>");
                 output.Content.AppendHtml(modalContext.DropDownOptions);
                 output.Content.AppendHtml("</ul>");
-                if (ShowCloseButton) output.Content.AppendHtml(closeTemplate);
+               
 
             }
-            
-       
+            if (ShowCloseButton) output.Content.AppendHtml(closeTemplate);
+
             output.Content.AppendHtml("</div>");
             output.Content.AppendHtml("</div>");
 
