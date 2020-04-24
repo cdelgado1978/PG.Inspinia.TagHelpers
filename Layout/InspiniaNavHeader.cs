@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using System;
+using System.Text;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace PG.Inspinia.TagHelpers
 {
@@ -7,7 +9,7 @@ namespace PG.Inspinia.TagHelpers
     {
 
         #region Properties  
-        public string Title { get; set; } = "Title";
+        public string Title { get; set; }
 
         public string SubTitle { get; set; } = "";
         
@@ -15,12 +17,16 @@ namespace PG.Inspinia.TagHelpers
 
         public string HomeUri { get; set; } = "#";
 
-        public string MainActionName { get; set; }
+        public string AreaName { get; set; }
+        
+     
+        public string ControllerName { get; set; }
 
-        public string MainActionUri { get; set; } = "#";
+        public string ControllerUri { get; set; } = "#";
 
-        public string ActiveActionName { get; set; } = "ActionName";
-#endregion
+      
+        public string ActionName { get; set; } 
+        #endregion
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -29,19 +35,17 @@ namespace PG.Inspinia.TagHelpers
 
             var htmlMainActionBlock = string.Empty;
             
-            if (!string.IsNullOrEmpty(MainActionName))
-            {
-                htmlMainActionBlock = 
-                    $@"<li class='breadcrumb-item'>
-                            <a href='{MainActionUri}'>{MainActionName}</a>
-                        </li>";
-            }
-
             var htmlTitleBlock = Title;
             if (!string.IsNullOrWhiteSpace(SubTitle))
             {
                 htmlTitleBlock = $"{Title} - {SubTitle}";
             }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(AreaName)) stringBuilder.Append($"<li class='breadcrumb-item'>{AreaName}</li>");
+            if (!string.IsNullOrEmpty(ControllerName)) stringBuilder.Append(GetLiElementFor(ControllerName, ControllerUri));
+            if (!string.IsNullOrEmpty(ActionName)) stringBuilder.Append(GetLiElementFor(ActionName));
 
             var htmlBlock = $@"
                 
@@ -51,10 +55,8 @@ namespace PG.Inspinia.TagHelpers
                             <li class='breadcrumb-item'>
                                 <a href='{HomeUri}'>{HomeName}</a>
                             </li>
-                            {htmlMainActionBlock}
-                            <li class='active breadcrumb-item'>
-                                <strong>{ActiveActionName}</strong>
-                            </li>
+                           {stringBuilder}
+                          
                         </ol>
                     </div>
                     <div class='col-lg-2'>
@@ -66,6 +68,30 @@ namespace PG.Inspinia.TagHelpers
             base.Process(context, output);
         }
 
-       
+        /// <summary>
+        /// Usar para definir los enlaces entre el home y la accion.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        private string GetLiElementFor(string name, string url)
+        {
+            string htmlStr = $@"<li class='breadcrumb-item'><a href='{url}'>{name}</a></li>";
+          
+
+            return htmlStr;
+        }
+
+        /// <summary>
+        /// Usar para definir la accion que se esta realizando
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private string GetLiElementFor(string name)
+        {
+            string activeActionStr = $@"<li class='active breadcrumb-item'><strong>{name}</strong></li>";
+
+            return activeActionStr;
+        }
     }
 }

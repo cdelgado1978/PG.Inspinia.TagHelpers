@@ -22,18 +22,16 @@ namespace PG.Inspinia.TagHelpers
 
         public bool ShowCollapseButton { get; set; } = false;
 
-        
-        private readonly string collapseTemplate = $@"<a class='collapse-link'>
-                                            <i class='fa fa-chevron-up'></i>
-                                            </a>";
+        public bool ShowFullScreen { get; set; } = false;
 
-        private readonly string closeTemplate = $@"<a class='close-link'>
-                                            <i class='fa fa-times'></i>
-                                         </a>";
 
-        private readonly string dropdownTemplate = $@"<a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-                                            <i class='fa fa-wrench'></i>
-                                            </a>";
+        private readonly string collapseTemplate = @"<a class='collapse-link'><i class='fa fa-chevron-up'></i></a>";
+
+        private readonly string fullScreenTemplate = @"<a class='fullscreen-link'><i class='fa fa-expand'></i></a>";
+
+        private readonly string closeTemplate = @"<a class='close-link'><i class='fa fa-times'></i></a>";
+
+        private readonly string dropdownTemplate = @"<a class='dropdown-toggle' data-toggle='dropdown' href='#'><i class='fa fa-wrench'></i></a>";
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
