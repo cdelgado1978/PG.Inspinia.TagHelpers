@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace PG.Inspinia.TagHelpers
 {
-    [HtmlTargetElement("InspiniaFooter")]
+    [HtmlTargetElement("Inspinia-Footer")]
     public class InspiniaFooter : TagHelper
     {
         public string text { get; set; }

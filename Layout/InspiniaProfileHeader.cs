@@ -2,7 +2,7 @@
 
 namespace PG.Inspinia.TagHelpers
 {
-    [HtmlTargetElement("InspiniaProfileHeader")]
+    [HtmlTargetElement("Inspinia-ProfileHeader")]
     public class InspiniaProfileHeader : TagHelper
     {
 

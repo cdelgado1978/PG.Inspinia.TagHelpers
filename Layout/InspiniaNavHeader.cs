@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace PG.Inspinia.TagHelpers
 {
-    [HtmlTargetElement("InspiniaNavHeader")]
+    [HtmlTargetElement("Inspinia-NavHeader")]
     public class InspiniaNavHeader: TagHelper
     {
 
